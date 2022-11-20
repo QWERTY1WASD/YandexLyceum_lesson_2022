@@ -13,13 +13,19 @@ class Example(QWidget):
     def __init__(self):
         super().__init__()
         uic.loadUi("UI.ui", self)
-        self.pushButton.clicked.connect(self.update)
+        self.pushButton.clicked.connect(self.click)
+        self.is_draw = False
 
     def paintEvent(self, event):
-        qp = QPainter()
-        qp.begin(self)
-        self.draw_circle(qp)
-        qp.end()
+        if self.is_draw:
+            qp = QPainter()
+            qp.begin(self)
+            self.draw_circle(qp)
+            qp.end()
+
+    def click(self):
+        self.is_draw = True
+        self.update()
 
     def draw_circle(self, qp):
         diameter = random.randint(self.MINIMAL_DIAMETER,
