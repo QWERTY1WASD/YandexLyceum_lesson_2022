@@ -13,6 +13,7 @@ class Example(QWidget):
     def __init__(self):
         super().__init__()
         uic.loadUi("UI.ui", self)
+        self.pushButton.clicked.connect(self.update)
 
     def paintEvent(self, event):
         qp = QPainter()
