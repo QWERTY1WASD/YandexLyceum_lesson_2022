@@ -5,13 +5,15 @@ from PyQt5 import uic
 from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QWidget, QApplication
 
+from UI import Ui_Form
 
-class Example(QWidget):
+
+class Example(QWidget, Ui_Form):
     MINIMAL_DIAMETER = 10
 
     def __init__(self):
         super().__init__()
-        uic.loadUi("UI.ui", self)
+        self.setupUi(self)
         self.pushButton.clicked.connect(self.click)
         self.is_draw = False
 
