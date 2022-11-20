@@ -25,9 +25,9 @@ class Example(QWidget):
         diameter = random.randint(self.MINIMAL_DIAMETER,
                                   min(self.width(), self.height()) // 2)
         qp.setBrush(self.CIRCLE_COLOR)
-        x = 30
-        y = 30
-        qp.drawEllipse(30, 30, x + diameter, y + diameter)
+        x = random.randint(0, self.width() - diameter)
+        y = random.randint(0, self.height() - diameter)
+        qp.drawEllipse(x, y, diameter, diameter)
 
 
 def my_exception_hook(exctype, value, traceback):
