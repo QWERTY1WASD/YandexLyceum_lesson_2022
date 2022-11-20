@@ -1,4 +1,5 @@
 import sys
+import random
 
 from PyQt5 import uic
 from PyQt5.QtGui import QPainter, QColor
@@ -7,6 +8,7 @@ from PyQt5.QtWidgets import QWidget, QApplication
 
 class Example(QWidget):
     CIRCLE_COLOR = QColor(255, 255, 0)
+    MINIMAL_DIAMETER = 10
 
     def __init__(self):
         super().__init__()
@@ -19,8 +21,12 @@ class Example(QWidget):
         qp.end()
 
     def draw_circle(self, qp):
+        diameter = random.randint(self.MINIMAL_DIAMETER,
+                                  min(self.width(), self.height()) // 2)
         qp.setBrush(self.CIRCLE_COLOR)
-        qp.drawEllipse(30, 30, 120, 120)
+        x = 30
+        y = 30
+        qp.drawEllipse(30, 30, x + diameter, y + diameter)
 
 
 def my_exception_hook(exctype, value, traceback):
